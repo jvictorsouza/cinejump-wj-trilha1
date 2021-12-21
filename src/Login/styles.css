@@ -1,0 +1,31 @@
+#row-div {
+  display: flex;
+  flex-direction: row;
+}
+
+#center-v-content {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  column-gap: 64px;
+  width: 100%;
+}
+
+#logo-image {
+  margin: auto;
+}
+
+#secondary-base-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  column-gap: 64px;
+}
