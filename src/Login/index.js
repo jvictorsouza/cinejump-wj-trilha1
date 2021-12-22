@@ -8,11 +8,11 @@ export class Login {
   }
 
   _renderLoginForm = () => {
-    return <span>FORM: email and password</span>;
+    return /*html*/ ` <span>FORM: email and password</span>`;
   };
 
   _renderRegisterForm = () => {
-    return <span>FORM: name, email and password</span>;
+    return /*html*/ ` <span>FORM: name, email and password</span>`;
   };
 
   _renderPrimaryBase = (
@@ -23,12 +23,14 @@ export class Login {
     buttonFunction
   ) => {
     return /*html*/ `
-      <div style='{width: ${widthPercentage}, height: 100%, backgroundColor: #E83F5B}'>
+      <div style='min-width: ${widthPercentage}; height: 100%; background-color: #E83F5B; margin: auto;'>
+      <div id="base-container">  
         <div id="center-v-content">
           <span id="base-title">${title}</span>
           <span id="base-subtitle">${subtitle}</span>
           <button onClick=${buttonFunction} >${buttonText}</button>
         </div>
+      </div>
       </div>
     `;
   };
@@ -41,8 +43,8 @@ export class Login {
     buttonFunction
   ) => {
     return /*html*/ `
-      <div style='{width: ${widthPercentage}, height: 100%, backgroundColor: ##FFFFFF}'>
-        <div id="secondary-base-container">
+      <div style='min-width: ${widthPercentage}; height: 100%; background-color: ##FFFFFF; margin: auto;'>
+        <div id="base-container">
           <span id="logo-image">
             Logo Image
           </span>
@@ -57,24 +59,25 @@ export class Login {
   };
 
   renderLogin() {
-    return /*html*/ `
+    const content = /*html*/ `
       <div id="row-div">
         ${this._renderSecondaryBase(
-          (widthPercentage = "65%"),
-          (title = "Login"),
-          (formRender = this._renderLoginForm),
-          (buttonFunction = "ENTRAR"),
-          (buttonFunction = () => {})
+          "65%",
+          "Login",
+          this._renderLoginForm,
+          "ENTRAR",
+          () => {}
         )}
         ${this._renderPrimaryBase(
-          (widthPercentage = "35%"),
-          (title = "Olá, visitante"),
-          (subtitle = "Cadastre-se e conheça as vantagens do Cinejump."),
-          (buttonFunction = "CRIAR CONTA"),
-          (buttonFunction = () => {})
+          "35%",
+          "Olá, visitante",
+          "Cadastre-se e conheça as vantagens do Cinejump.",
+          "CRIAR CONTA",
+          () => {}
         )}
       </div>
     `;
+    return content;
   }
 
   renderRegister() {

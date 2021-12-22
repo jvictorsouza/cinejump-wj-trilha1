@@ -9,3 +9,15 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+#app {
+  display: flex;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+#content-app {
+  display: flex;
+  min-width: 100%;
+  min-height: 100%;
+}
