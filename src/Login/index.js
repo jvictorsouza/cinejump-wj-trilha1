@@ -5,6 +5,7 @@ export class Login {
     this.name = "";
     this.email = "";
     this.password = "";
+    this.pageActive = "login";
   }
 
   _renderLoginForm = () => {
@@ -15,22 +16,28 @@ export class Login {
     return /*html*/ ` <span>FORM: name, email and password</span>`;
   };
 
+  _changePageActive = (page) => {
+    console.log(page);
+    this.pageActive = page;
+  };
+
   _renderPrimaryBase = (
     widthPercentage,
     title,
     subtitle,
     buttonText,
-    buttonFunction
+    buttonFunction,
+    alternativePage
   ) => {
     return /*html*/ `
       <div style='min-width: ${widthPercentage}; height: 100%; background-color: #E83F5B; margin: auto;'>
-      <div id="base-container">  
-        <div id="center-v-content">
-          <span id="base-title">${title}</span>
-          <span id="base-subtitle">${subtitle}</span>
-          <button onClick=${buttonFunction} >${buttonText}</button>
+        <div id="base-container" style='justify-content: space-evenly;' >  
+          <div id="center-v-content">
+            <span id="base-title" style='color:#FFFFFF; font-weight: 500;' >${title}</span>
+            <span id="base-subtitle">${subtitle}</span>
+            <button class="button" id="bottom-button" onclick=_changePageActive(${alternativePage}) >${buttonText}</button>
+          </div>
         </div>
-      </div>
       </div>
     `;
   };
@@ -40,7 +47,8 @@ export class Login {
     title,
     formRender,
     buttonText,
-    buttonFunction
+    buttonFunction,
+    alternativePage
   ) => {
     return /*html*/ `
       <div style='min-width: ${widthPercentage}; height: 100%; background-color: ##FFFFFF; margin: auto;'>
@@ -49,9 +57,10 @@ export class Login {
             Logo Image
           </span>
           <div id="center-v-content">
-            <span id="base-title">${title}</span>
+            <span id="base-title" style='color:#E83F5B;font-weight: 400;'>${title}</span>
             ${formRender()}
-            <button onClick=${buttonFunction} >${buttonText}</button>
+            <button class="button" id="bottom-button" onclick=${() =>
+              (this.pageActive = alternativePage)} >${buttonText}</button>
           </div>
         </div>
       </div>
@@ -59,24 +68,51 @@ export class Login {
   };
 
   renderLogin() {
-    const content = /*html*/ `
+    let content;
+    if (this.pageActive === "login") {
+      content = /*html*/ `
       <div id="row-div">
         ${this._renderSecondaryBase(
           "65%",
           "Login",
           this._renderLoginForm,
           "ENTRAR",
-          () => {}
+          () => {},
+          "register"
         )}
         ${this._renderPrimaryBase(
           "35%",
-          "Olá, visitante",
+          "Olá, visitante!",
           "Cadastre-se e conheça as vantagens do Cinejump.",
           "CRIAR CONTA",
-          () => {}
+          () => {},
+          "login"
         )}
       </div>
     `;
+    } else {
+      content = /*html*/ `
+      <div id="row-div">
+        ${this._renderSecondaryBase(
+          "65%",
+          "Criar conta",
+          this._renderLoginForm,
+          "CADASTRAR",
+          () => {},
+          "login"
+        )}
+        ${this._renderPrimaryBase(
+          "35%",
+          "Bem-vindo, Jumper!",
+          "Para se manter conectado, faça login com suas credenciais.",
+          "LOGIN",
+          () => {},
+          "register"
+        )}
+      </div>
+    `;
+    }
+
     return content;
   }
 
