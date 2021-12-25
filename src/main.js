@@ -1,6 +1,8 @@
 import api from "./api";
 import "./styles.css";
-import { Login } from "./Login";
+import renderLogin from "./modules/user/login.js";
+import renderRegister from "./modules/user/register.js";
+import "./modules/user/styles.css";
 
 class App {
   constructor() {
@@ -9,15 +11,16 @@ class App {
   }
 
   render() {
-    var login = new Login();
     const content = /*html*/ `
       <div id = "content-app">
-        ${login.renderLogin()}
+        ${renderLogin()}
       </div>
     `;
 
     return content;
   }
 }
+
+export { renderLogin, renderRegister };
 
 const app = new App();
