@@ -81,11 +81,24 @@ export default function renderRegister() {
                 <button class="button" id="bottom-button" 
                   onclick="(
                     function() {
-                      const name_alert_error = document.getElementById('name-error').value;
-                      const email_alert_error = document.getElementById('email-error').value;
-                      const password_alert_error = document.getElementById('password-error').value;
+                      const name = document.getElementById('name').value;
+                      const email = document.getElementById('email').value;
+                      const password = document.getElementById('password').value;
 
-                      if (name_alert_error === '' || email_alert_error === '' || password_alert_error === ''){
+                      const name_alert_error = document.getElementById('name-error');
+                      const email_alert_error = document.getElementById('email-error');
+                      const password_alert_error = document.getElementById('password-error');
+
+                      if (name === '') {
+                        name_alert_error.innerText = 'Por favor, insira um nome.';
+                      }
+                      if (email === '') {
+                        email_alert_error.innerText = 'Por favor, insira um e-mail válido.';
+                      }
+                      if (password === '') {
+                        password_alert_error.innerText = 'Por favor, insira uma senha.';
+                      }
+                      else if (name_alert_error.value === '' || email_alert_error.value === '' || password_alert_error.value === ''){
                         console.log('envio para o backend');
                       }
                   })()"
