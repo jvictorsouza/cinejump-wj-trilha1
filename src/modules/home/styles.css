@@ -1,0 +1,29 @@
+#layout-home {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 100px;
+}
+
+#layout-home-highligths {
+  width: 100%;
+  background-color: "#e83f5b";
+  min-width: 328px;
+}
+
+#layout-home-row {
+  width: 100%;
+  background-color: #ffffff;
+  min-width: 328px;
+}
+
+#layout-home-row :hover {
+  background-color: #80bcb8;
+}
+
+#home-container-row {
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px;
+  margin: 0 auto;
+}

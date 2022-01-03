@@ -1,8 +1,18 @@
-import api from "./api";
+import {
+  getPopularMovies,
+  getPlayingMovies,
+  getRecomendationsMovies,
+  getTopMovies,
+} from "./api";
 import "./styles.css";
 import renderLogin from "./modules/user/login.js";
 import renderRegister from "./modules/user/register.js";
 import "./modules/user/styles.css";
+import renderHeader from "./modules/layout/header";
+import renderFooter from "./modules/layout/footer";
+import "./modules/layout/styles.css";
+import renderHome from "./modules/home";
+import "./modules/home/styles.css";
 
 class App {
   constructor() {
@@ -13,7 +23,7 @@ class App {
   render() {
     const content = /*html*/ `
       <div id = "content-app">
-        ${renderLogin()}
+        ${renderHome()}
       </div>
     `;
 
@@ -21,6 +31,16 @@ class App {
   }
 }
 
-export { renderLogin, renderRegister };
+export {
+  renderLogin,
+  renderRegister,
+  renderHome,
+  renderHeader,
+  renderFooter,
+  getPopularMovies,
+  getPlayingMovies,
+  getRecomendationsMovies,
+  getTopMovies,
+};
 
 const app = new App();
