@@ -2,7 +2,7 @@ export default function renderFooter() {
   return /*html*/ `
       <div id="layout-footer">
         <div id="footer-content">
-         <img src="/images/Logo-white.svg" />
+         <img src="/images/Logo-white.svg"  onclick='window.scrollTo({ top: 0, behavior: "smooth" })' style='cursor: pointer;' />
           <div id="list-links">
             <span onclick="window.open('https:\/\/www.linkedin.com/in/jvictorsouza/', '_blank');">Desenvolvido por João Chagas</span>
             <span onclick="window.open('https:\/\/webjump.atlassian.net/wiki/spaces/AW/pages/2195030481/Projeto+Final+-+Trilha+1', '_blank');">Proposta do projeto</span>

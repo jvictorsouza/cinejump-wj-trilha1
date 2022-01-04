@@ -3,11 +3,11 @@ export default function renderHeader() {
       <div id="layout-header">
         <div id="header-content">
           <div id="btns-header-camp">
-            <span onclick='console.log("onclick header Filmes btn")'>Filmes</span>
-            <span onclick='console.log("onclick header Séries btn")'>Séries</span>
+            <span onclick='alert("Funcionalidade ainda não inserida")'>Filmes</span>
+            <span onclick='alert("Funcionalidade ainda não inserida")'>Séries</span>
           </div>
 
-          <img src="/images/Logo-white.svg" />
+          <img src="/images/Logo-white.svg" onclick='window.scrollTo({ top: 0, behavior: "smooth" })' style='cursor: pointer;'/>
 
           <div id="btns-header-camp">
             <input type="text" id="search" name="search" placeholder="Pesquisar">
@@ -20,9 +20,12 @@ export default function renderHeader() {
                   } else if (search.style.display === '' || search.style.display === 'none') {
                     search.style.display = 'inline-block';
                   }
+                  else {
+                    alert('Funcionalidade ainda não inserida');
+                  }
                 })()"
             />
-            <img src="/images/FaRegUserCircle.svg" onclick='console.log("onclick header User icon btn")'/>
+            <img src="/images/FaRegUserCircle.svg" onclick='alert("Funcionalidade ainda não inserida")'/>
           </div>
         </div>
       </div>
