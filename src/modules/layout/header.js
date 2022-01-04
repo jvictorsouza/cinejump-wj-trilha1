@@ -25,7 +25,7 @@ export default function renderHeader() {
                   }
                 })()"
             />
-            <img src="/images/FaRegUserCircle.svg" />
+            <img src="/images/FaRegUserCircle.svg" onclick='alert("Funcionalidade ainda não inserida")' />
             <img src="/images/FiLogout.svg" 
               onclick="(
                 function() {
