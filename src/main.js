@@ -3,6 +3,7 @@ import {
   getPlayingMovies,
   getRecomendationsMovies,
   getTopMovies,
+  getTrailerInfo,
 } from "./api";
 import "./styles.css";
 import renderLogin from "./modules/user/login.js";
@@ -41,6 +42,7 @@ export {
   getPlayingMovies,
   getRecomendationsMovies,
   getTopMovies,
+  getTrailerInfo,
 };
 
 const app = new App();
