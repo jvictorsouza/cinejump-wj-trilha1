@@ -169,12 +169,14 @@ export default function renderHome() {
   });
 
   return /*html*/ `
+    <div style='display: flex; flex-direction: column; min-width: inherit'>
       ${renderHeader()}
       <div id="layout-home">
         <div id="home-content">
         </div>
       </div>
       ${renderFooter()}
+    </div>
     `;
 }
 

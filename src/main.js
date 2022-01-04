@@ -22,9 +22,10 @@ class App {
   }
 
   render() {
+    const session = localStorage.getItem("session");
     const content = /*html*/ `
       <div id = "content-app">
-        ${renderHome()}
+        ${session ? renderHome() : renderLogin()}
       </div>
     `;
 
