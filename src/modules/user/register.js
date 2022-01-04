@@ -7,12 +7,15 @@ export default function renderRegister() {
               <span id="base-title" style='color:#FFFFFF; font-weight: 500;' >Bem-vindo, Jumper!</span>
               <span id="base-subtitle">Para se manter conectado, faça login com suas credenciais.</span>
               <button type="button" id="bottom-button" 
-                onclick="(
+                onclick='(
                   function() {
-                    let bodyElement = document.getElementById('app');
-                    bodyElement.innerHTML = ''
-                    bodyElement.innerHTML = linkRenderLogin();
-                  })()" 
+                    let bodyElement = document.getElementById("app");
+                    let contentApp = document.createElement("div");
+                    contentApp.id = "content-app";
+                    contentApp.innerHTML = linkRenderLogin();
+                    bodyElement.innerHTML = "";
+                    bodyElement.appendChild(contentApp);
+                  })()'
               >LOGIN</button>
             </div>
           </div>
@@ -98,8 +101,11 @@ export default function renderRegister() {
                       if (password === '') {
                         password_alert_error.innerText = 'Por favor, insira uma senha.';
                       }
-                      else if (name_alert_error.value === '' || email_alert_error.value === '' || password_alert_error.value === ''){
-                        console.log('envio para o backend');
+                      else if (name_alert_error.innerText === '' && email_alert_error.innerText === '' && password_alert_error.innerText === ''){
+                        localStorage.setItem('session', JSON.stringify(true));
+                        let bodyElement = document.getElementById('app');
+                        bodyElement.innerHTML = '';
+                        bodyElement.innerHTML = linkRenderHome();
                       }
                   })()"
                 >CADASTRAR</button>

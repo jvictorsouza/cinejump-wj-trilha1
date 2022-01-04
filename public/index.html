@@ -14,12 +14,30 @@
   <body>
     <div id="app"></div>
     <script src="./bundle.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" id="module-user">
       function linkRenderLogin() {
         return $.renderLogin();
       }
       function linkRenderRegister() {
         return $.renderRegister();
+      }
+    </script>
+    <script type="text/javascript" id="module-layout">
+      function linkRenderHeader() {
+        return $.renderHeader();
+      }
+      function linkRenderFooter() {
+        return $.renderFooter();
+      }
+    </script>
+    <script type="text/javascript" id="module-home">
+      function linkRenderHome() {
+        return $.renderHome();
+      }
+    </script>
+    <script type="text/javascript" id="api">
+      function linkGetTrailerInfo(movieName) {
+        return $.getTrailerInfo(movieName);
       }
     </script>
   </body>

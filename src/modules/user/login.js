@@ -59,8 +59,11 @@ export default function renderLogin() {
                       if (password === '') {
                         password_alert_error.innerText = 'Por favor, insira uma senha.';
                       }
-                      else if (email_alert_error.value === '' || password_alert_error.value === ''){
-                        console.log('envio para o backend');
+                      if (email_alert_error.innerText === '' && password_alert_error.innerText === ''){
+                        localStorage.setItem('session', JSON.stringify(true));
+                        let bodyElement = document.getElementById('app');
+                        bodyElement.innerHTML = '';
+                        bodyElement.innerHTML = linkRenderHome();
                       }
                   })()"
                   >ENTRAR</button>
@@ -77,7 +80,11 @@ export default function renderLogin() {
                 onclick='(
                   function() {
                     let bodyElement = document.getElementById("app");
-                    bodyElement.innerHTML = linkRenderRegister();
+                    let contentApp = document.createElement("div");
+                    contentApp.id = "content-app";
+                    contentApp.innerHTML = linkRenderRegister();
+                    bodyElement.innerHTML = "";
+                    bodyElement.appendChild(contentApp);
                   })()'
               >CRIAR CONTA</button>
             </div>
