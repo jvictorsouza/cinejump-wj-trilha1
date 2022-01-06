@@ -1,3 +1,4 @@
+![image](https://user-images.githubusercontent.com/54218892/148388406-98635308-436f-4077-bd07-1d7e4016dd89.png)
 # Cinejump
 
 Projeto final da Trilha 1 para desenvolvedores Frontend React disponibilizado pela Academia Webjump, programa de capacitação interno da empresa Webjump Design em Informática. O projeto consiste em um website voltado para amostragem de filmes e séries.
@@ -48,3 +49,7 @@ npm run dev
 ```
 
 Acesse a url http://localhost:8080/
+
+## Vídeo demonstrativo
+
+https://user-images.githubusercontent.com/54218892/148390439-7efcfb58-d095-4a7a-b2a8-44fb266efeec.mp4
