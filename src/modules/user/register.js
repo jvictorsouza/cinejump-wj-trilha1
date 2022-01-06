@@ -53,7 +53,7 @@ export default function renderRegister() {
                         if (email.split(' ').length > 1) {
                           alertError.innerText = 'Por favor, remova espaços do e-mail.';
                         }
-                        else if (email.trim().length < 6 || email.trim().length < 2 || email.trim().length < 3 || email.trim().length < 6) {
+                        else if (email.trim().length < 6 || email.trim().length < 2 || email.split('@').length < 2 || email.trim('.').length < 3) {
                           alertError.innerText = 'Por favor, insira um e-mail válido.';
                         }
                         else {
