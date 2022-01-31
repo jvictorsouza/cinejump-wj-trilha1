@@ -75,15 +75,6 @@
   z-index: 1;
 }
 
-/* @media-screen and (min-width: 1000px) {
-  #layout-home-highlights-content
-    #secondary-highligth
-    #secondary-highlights-banners-info
-    span:after {
-    font-size: 10px;
-  }
-} */
-
 #layout-home-highlights-content #secondary-highligth img {
   border-radius: 10px 10px 0px 0px;
   position: relative;

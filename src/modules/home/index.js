@@ -7,6 +7,7 @@ import {
   getPlayingMovies,
   getTopMovies,
 } from "../../api";
+import { verifyFavorites, renderFavorites } from "./utils";
 
 export default function renderHome() {
   getPopularMovies().then((data) => {
@@ -25,14 +26,19 @@ export default function renderHome() {
 
     let carousel = document.getElementById("carousel-populars");
     data.results.map((movie) => {
-      let image = document.createElement("img");
-      image.setAttribute(
-        "src",
-        `${process.env.IMAGE_BASE_URL}/w185${movie.poster_path}`
-      );
-      image.setAttribute("title", `${movie.original_title}`);
-      image.style.cssText =
-        "min-height: 278px; width: auto; border-radius: 10px; margin-bottom: 15px";
+      let image = document.createElement("div");
+      image.setAttribute("title", `${movie.original_title}-content-populars`);
+      image.style.cssText = `min-height: 278px; min-width: 185px; width: auto; border-radius: 10px; margin-bottom: 15px; background-image: url(${process.env.IMAGE_BASE_URL}/w185${movie.poster_path});`;
+      image.innerHTML = /*html*/ `
+        <img  id='${movie.original_title}-${
+        movie.poster_path
+      }-heart-poppulars' src=${verifyFavorites(
+        movie.original_title,
+        movie.poster_path
+      )} style='cursor: pointer; height: fit-content; margin: auto; margin-top: 5px; margin-right: 5px;' 
+          onclick="linkUpdateFavorite(this.id)"
+        />
+      `;
       carousel.appendChild(image);
     });
 
@@ -45,6 +51,7 @@ export default function renderHome() {
         </div>
       `;
       homeContent.insertBefore(row, homeContent.firstChild);
+
       let highlightsContent = document.getElementById(
         "layout-home-highlights-content"
       );
@@ -78,37 +85,6 @@ export default function renderHome() {
     });
   });
 
-  getPopularMovies().then((data) => {
-    let homeContent = document.getElementById("home-content");
-    var row = document.createElement("div");
-    row.innerHTML = /*html*/ `
-      <div id="layout-home-row">
-        <div id="layout-home-row-content">
-          <span>Trailers</span>
-          <div id="carousel-populars-trailers">
-          </div>
-        </div>
-      </div>
-    `;
-    homeContent.appendChild(row);
-
-    let carousel = document.getElementById("carousel-populars-trailers");
-    data.results.map((movie) => {
-      let trailer = document.createElement("div");
-      trailer.setAttribute(
-        "title",
-        `${movie.original_title} - Official Trailer (HD)`
-      );
-      trailer.style.cssText = `min-height: 225px; min-width: 400px; border-radius: 10px; margin: 0; margin-bottom: 15px; justify-content: center; background-image: url(${process.env.IMAGE_BASE_URL}/w500${movie.backdrop_path});`;
-      trailer.innerHTML = /*html*/ `
-        <img id='${movie.original_title}' src="/images/FiPlay.svg" style='cursor: pointer; height: fit-content; margin: auto;' 
-          onclick="linkGetTrailerInfo(this.id)"
-        />
-      `;
-      carousel.appendChild(trailer);
-    });
-  });
-
   getPlayingMovies().then((data) => {
     let homeContent = document.getElementById("home-content");
     var row = document.createElement("div");
@@ -121,50 +97,89 @@ export default function renderHome() {
         </div>
       </div>
     `;
-    homeContent.appendChild(row);
+    homeContent.insertBefore(row, homeContent.children[4]);
 
     let carousel = document.getElementById("carousel-playing");
     data.results.map((movie) => {
-      let image = document.createElement("img");
-      image.setAttribute(
-        "src",
-        `${process.env.IMAGE_BASE_URL}/w185${movie.poster_path}`
-      );
-      image.setAttribute("title", `${movie.original_title}`);
-      image.style.cssText =
-        "min-height: 278px; width: auto; border-radius: 10px; margin-bottom: 15px";
+      let image = document.createElement("div");
+      image.setAttribute("title", `${movie.original_title}-content-playing`);
+      image.style.cssText = `min-height: 278px; min-width: 185px; width: auto; border-radius: 10px; margin-bottom: 15px; background-image: url(${process.env.IMAGE_BASE_URL}/w185${movie.poster_path});`;
+      image.innerHTML = /*html*/ `
+        <img  id='${movie.original_title}-${
+        movie.poster_path
+      }-heart-playing' src=${verifyFavorites(
+        movie.original_title,
+        movie.poster_path
+      )} style='cursor: pointer; height: fit-content; margin: auto; margin-top: 5px; margin-right: 5px;' 
+          onclick="linkUpdateFavorite(this.id)"
+        />
+      `;
       carousel.appendChild(image);
     });
-  });
 
-  getTopMovies().then((data) => {
-    let homeContent = document.getElementById("home-content");
-    var row = document.createElement("div");
-    row.innerHTML = /*html*/ `
-      <div id="layout-home-row">
-        <div id="layout-home-row-content">
-          <span>Top Filmes</span>
-          <div id="carousel-top">
+    getPopularMovies().then((data) => {
+      let homeContent = document.getElementById("home-content");
+      var row = document.createElement("div");
+      row.innerHTML = /*html*/ `
+        <div id="layout-home-row">
+          <div id="layout-home-row-content">
+            <span>Trailers</span>
+            <div id="carousel-populars-trailers">
+            </div>
           </div>
         </div>
-      </div>
-    `;
-    homeContent.appendChild(row);
+      `;
+      homeContent.insertBefore(row, homeContent.children[2]);
 
-    let carousel = document.getElementById("carousel-top");
-    data.results.map((movie) => {
-      let image = document.createElement("img");
-      image.setAttribute(
-        "src",
-        `${process.env.IMAGE_BASE_URL}/w185${movie.poster_path}`
-      );
-      image.setAttribute(
-        "title",
-        `${movie.original_title}: ${movie.vote_average}`
-      );
-      image.style.cssText =
-        "min-height: 278px; width: auto; border-radius: 10px; margin-bottom: 15px";
-      carousel.appendChild(image);
+      let carousel = document.getElementById("carousel-populars-trailers");
+      data.results.map((movie) => {
+        let trailer = document.createElement("div");
+        trailer.setAttribute(
+          "title",
+          `${movie.original_title} - Official Trailer (HD)`
+        );
+        trailer.style.cssText = `min-height: 225px; min-width: 400px; border-radius: 10px; margin: 0; margin-bottom: 15px; justify-content: center; background-image: url(${process.env.IMAGE_BASE_URL}/w500${movie.backdrop_path});`;
+        trailer.innerHTML = /*html*/ `
+          <img id='${movie.original_title}' src="/images/FiPlay.svg" style='cursor: pointer; height: fit-content; margin: auto;' 
+            onclick="linkGetTrailerInfo(this.id)"
+          />
+        `;
+        carousel.appendChild(trailer);
+      });
+    });
+
+    getTopMovies().then((data) => {
+      let homeContent = document.getElementById("home-content");
+      var row = document.createElement("div");
+      row.innerHTML = /*html*/ `
+        <div id="layout-home-row">
+          <div id="layout-home-row-content">
+            <span>Top Filmes</span>
+            <div id="carousel-top">
+            </div>
+          </div>
+        </div>
+      `;
+      homeContent.insertBefore(row, homeContent.children[5]);
+
+      let carousel = document.getElementById("carousel-top");
+      data.results.map((movie) => {
+        let image = document.createElement("div");
+        image.setAttribute("title", `${movie.original_title}-content-top`);
+        image.style.cssText = `min-height: 278px; min-width: 185px; width: auto; border-radius: 10px; margin-bottom: 15px; background-image: url(${process.env.IMAGE_BASE_URL}/w185${movie.poster_path});`;
+        image.innerHTML = /*html*/ `
+          <img  id='${movie.original_title}-${
+          movie.poster_path
+        }-heart-top' src=${verifyFavorites(
+          movie.original_title,
+          movie.poster_path
+        )} style='cursor: pointer; height: fit-content; margin: auto; margin-top: 5px; margin-right: 5px;' 
+            onclick="linkUpdateFavorite(this.id)"
+          />
+        `;
+        carousel.appendChild(image);
+      });
+      renderFavorites();
     });
   });
 
@@ -179,10 +194,3 @@ export default function renderHome() {
     </div>
     `;
 }
-
-// <div id="layout-home-row">
-//   <div id="layout-home-row-content">
-//     <span>HOME ROW</span>
-//     <div id="carousel"></div>
-//   </div>
-// </div>
