@@ -34,8 +34,6 @@ export default function renderLogin() {
                         const alertError = document.getElementById('password-error');
                         if (password.trim().length === 0){
                           alertError.innerText = 'Por favor, insira uma senha.';
-                        } else if (password.trim().length < 6) {
-                          alertError.innerText = 'Por favor, insira uma senha com mais de 5 caracteres.';
                         }
                         else {
                           alertError.innerText = '';
@@ -61,6 +59,7 @@ export default function renderLogin() {
                       }
                       if (email_alert_error.innerText === '' && password_alert_error.innerText === ''){
                         localStorage.setItem('session', JSON.stringify(true));
+                        localStorage.setItem('user', JSON.stringify(email.split('@')[0]));
                         let bodyElement = document.getElementById('app');
                         bodyElement.innerHTML = '';
                         bodyElement.innerHTML = linkRenderHome();

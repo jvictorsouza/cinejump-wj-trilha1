@@ -71,8 +71,6 @@ export default function renderRegister() {
                         const alertError = document.getElementById('password-error');
                         if (password.trim().length === 0){
                           alertError.innerText = 'Por favor, insira uma senha.';
-                        } else if (password.trim().length < 6) {
-                          alertError.innerText = 'Por favor, insira uma senha com mais de 5 caracteres.';
                         }
                         else {
                           alertError.innerText = '';
