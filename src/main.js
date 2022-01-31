@@ -14,6 +14,7 @@ import renderFooter from "./modules/layout/footer";
 import "./modules/layout/styles.css";
 import renderHome from "./modules/home";
 import "./modules/home/styles.css";
+import { updateFavorite, renderFavorites } from "./modules/home/utils";
 
 class App {
   constructor() {
@@ -44,6 +45,8 @@ export {
   getRecomendationsMovies,
   getTopMovies,
   getTrailerInfo,
+  updateFavorite,
+  renderFavorites,
 };
 
 const app = new App();

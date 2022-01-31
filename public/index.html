@@ -35,6 +35,16 @@
         return $.renderHome();
       }
     </script>
+    <script type="text/javascript" id="favorite">
+      function linkUpdateFavorite(id) {
+        return $.updateFavorite(id);
+      }
+    </script>
+    <script type="text/javascript" id="favorite">
+      function linkRenderFavorites() {
+        return $.renderFavorites();
+      }
+    </script>
     <script type="text/javascript" id="api">
       function linkGetTrailerInfo(movieName) {
         return $.getTrailerInfo(movieName);
