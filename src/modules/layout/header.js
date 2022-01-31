@@ -30,6 +30,7 @@ export default function renderHeader() {
               onclick="(
                 function() {
                   localStorage.removeItem('session');
+                  localStorage.removeItem('user');
                   window.location.reload(true);
               })()"
             />
