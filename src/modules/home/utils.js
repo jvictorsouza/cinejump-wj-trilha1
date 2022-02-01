@@ -1,5 +1,5 @@
-export function updateFavorite(id) {
-  let idInfos = id.split("-");
+export function updateFavorite(id, fromFavorites) {
+  let idInfos = id.split("|");
   let userName = JSON.parse(localStorage.getItem("user"));
   let favoritesStorage = localStorage.getItem("favorites");
   let dataFavorites = (favoritesStorage && JSON.parse(favoritesStorage)) || {};
@@ -11,7 +11,7 @@ export function updateFavorite(id) {
   }
   let item = {
     original_title: idInfos[0],
-    poster_path: idInfos[1],
+    poster_path: idInfos[1].split("-")[0],
   };
   const heart = document.getElementById(id);
   let newUserFavorites = [];
@@ -27,7 +27,13 @@ export function updateFavorite(id) {
   }
   dataFavorites[userName] = newUserFavorites;
   localStorage.setItem("favorites", JSON.stringify(dataFavorites));
-  linkRenderFavorites();
+  if (fromFavorites) {
+    let homeContent = document.getElementById("home-content");
+    homeContent.innerHTML = "";
+    linkRenderHome();
+  } else {
+    linkRenderFavorites();
+  }
 }
 
 export function verifyFavorites(original_title, poster_path) {
@@ -83,16 +89,16 @@ export function renderFavorites() {
 
     userFavorites.map((movie) => {
       let image = document.createElement("div");
-      image.setAttribute("title", `${movie.original_title}-content-favorites`);
+      image.setAttribute("title", `${movie.original_title}`);
       image.style.cssText = `min-height: 278px; min-width: 185px; width: auto; border-radius: 10px; margin-bottom: 15px; background-image: url(${process.env.IMAGE_BASE_URL}/w185${movie.poster_path});`;
       image.innerHTML = /*html*/ `
-        <img  id='${movie.original_title}-${
+        <img  id='${movie.original_title}|${
         movie.poster_path
       }-heart-favorites' src=${verifyFavorites(
         movie.original_title,
         movie.poster_path
       )} style='cursor: pointer; height: fit-content; margin: auto; margin-top: 5px; margin-right: 5px;' 
-          onclick="linkUpdateFavorite(this.id)"
+          onclick="linkUpdateFavorite(this.id, true)"
         />
       `;
       carousel.appendChild(image);

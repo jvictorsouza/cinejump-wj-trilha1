@@ -101,6 +101,7 @@ export default function renderRegister() {
                       }
                       else if (name_alert_error.innerText === '' && email_alert_error.innerText === '' && password_alert_error.innerText === ''){
                         localStorage.setItem('session', JSON.stringify(true));
+                        localStorage.setItem('user', JSON.stringify(email.split('@')[0]));
                         let bodyElement = document.getElementById('app');
                         bodyElement.innerHTML = '';
                         bodyElement.innerHTML = linkRenderHome();

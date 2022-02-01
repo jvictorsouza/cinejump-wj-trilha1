@@ -27,10 +27,10 @@ export default function renderHome() {
     let carousel = document.getElementById("carousel-populars");
     data.results.map((movie) => {
       let image = document.createElement("div");
-      image.setAttribute("title", `${movie.original_title}-content-populars`);
+      image.setAttribute("title", `${movie.original_title}`);
       image.style.cssText = `min-height: 278px; min-width: 185px; width: auto; border-radius: 10px; margin-bottom: 15px; background-image: url(${process.env.IMAGE_BASE_URL}/w185${movie.poster_path});`;
       image.innerHTML = /*html*/ `
-        <img  id='${movie.original_title}-${
+        <img  id='${movie.original_title}|${
         movie.poster_path
       }-heart-poppulars' src=${verifyFavorites(
         movie.original_title,
@@ -102,10 +102,10 @@ export default function renderHome() {
     let carousel = document.getElementById("carousel-playing");
     data.results.map((movie) => {
       let image = document.createElement("div");
-      image.setAttribute("title", `${movie.original_title}-content-playing`);
+      image.setAttribute("title", `${movie.original_title}`);
       image.style.cssText = `min-height: 278px; min-width: 185px; width: auto; border-radius: 10px; margin-bottom: 15px; background-image: url(${process.env.IMAGE_BASE_URL}/w185${movie.poster_path});`;
       image.innerHTML = /*html*/ `
-        <img  id='${movie.original_title}-${
+        <img  id='${movie.original_title}|${
         movie.poster_path
       }-heart-playing' src=${verifyFavorites(
         movie.original_title,
@@ -165,10 +165,10 @@ export default function renderHome() {
       let carousel = document.getElementById("carousel-top");
       data.results.map((movie) => {
         let image = document.createElement("div");
-        image.setAttribute("title", `${movie.original_title}-content-top`);
+        image.setAttribute("title", `${movie.original_title}`);
         image.style.cssText = `min-height: 278px; min-width: 185px; width: auto; border-radius: 10px; margin-bottom: 15px; background-image: url(${process.env.IMAGE_BASE_URL}/w185${movie.poster_path});`;
         image.innerHTML = /*html*/ `
-          <img  id='${movie.original_title}-${
+          <img  id='${movie.original_title}|${
           movie.poster_path
         }-heart-top' src=${verifyFavorites(
           movie.original_title,

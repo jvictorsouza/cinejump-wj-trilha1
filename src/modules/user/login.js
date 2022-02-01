@@ -58,11 +58,22 @@ export default function renderLogin() {
                         password_alert_error.innerText = 'Por favor, insira uma senha.';
                       }
                       if (email_alert_error.innerText === '' && password_alert_error.innerText === ''){
-                        localStorage.setItem('session', JSON.stringify(true));
-                        localStorage.setItem('user', JSON.stringify(email.split('@')[0]));
-                        let bodyElement = document.getElementById('app');
-                        bodyElement.innerHTML = '';
-                        bodyElement.innerHTML = linkRenderHome();
+                        let favoritesLocalStorageData = localStorage.getItem('favorites'); 
+                        if (favoritesLocalStorageData) {
+                          let favoritesData = JSON.parse(favoritesLocalStorageData);
+                          if (Object.keys(favoritesData).includes(email.split('@')[0])) {
+                            localStorage.setItem('session', JSON.stringify(true));
+                            localStorage.setItem('user', JSON.stringify(email.split('@')[0]));
+                            let bodyElement = document.getElementById('app');
+                            bodyElement.innerHTML = '';
+                            bodyElement.innerHTML = linkRenderHome();
+                          } else {
+                            alert('Usuário não cadastrado');
+                          }
+                        } else {
+                          alert('Usuário não cadastrado');
+                        }
+                        
                       }
                   })()"
                   >ENTRAR</button>
