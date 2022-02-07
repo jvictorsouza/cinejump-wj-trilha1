@@ -3,45 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
-    <title>Github App</title>
-
-    <style>
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-      }
-
-      li {
-        clear: both;
-        margin-top: 20px;
-      }
-
-      img {
-        width: 80px;
-        float: left;
-        margin-right: 10px;
-      }
-
-      strong {
-        font-size: 20px;
-      }
-
-      p {
-        margin: 5px 0;
-      }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Cinejump</title>
   </head>
   <body>
-    <form id="repo-form">
-      <input type="text" name="repository" />
-      <button type="submit">Adicionar</button>
-    </form>
-
-    <ul id="repo-list"></ul>
-
+    <div id="app"></div>
     <script src="./bundle.js"></script>
+    <script type="text/javascript" id="module-user">
+      function linkRenderLogin() {
+        return $.renderLogin();
+      }
+      function linkRenderRegister() {
+        return $.renderRegister();
+      }
+    </script>
+    <script type="text/javascript" id="module-layout">
+      function linkRenderHeader() {
+        return $.renderHeader();
+      }
+      function linkRenderFooter() {
+        return $.renderFooter();
+      }
+    </script>
+    <script type="text/javascript" id="module-home">
+      function linkRenderHome() {
+        return $.renderHome();
+      }
+    </script>
+    <script type="text/javascript" id="favorite">
+      function linkUpdateFavorite(id, flag) {
+        return $.updateFavorite(id, flag);
+      }
+    </script>
+    <script type="text/javascript" id="favorite">
+      function linkRenderFavorites() {
+        return $.renderFavorites();
+      }
+    </script>
+    <script type="text/javascript" id="api">
+      function linkGetTrailerInfo(movieName) {
+        return $.getTrailerInfo(movieName);
+      }
+    </script>
   </body>
 </html>
